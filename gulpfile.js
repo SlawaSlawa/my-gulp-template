@@ -80,6 +80,11 @@ function fonts() {
         .pipe(dest('./dist/fonts'))
 }
 
+function libs() {
+    return src('./src/libs/**/*')
+        .pipe(dest('./dist/libs'))
+}
+
 function clean() {
     return del('dist/*')
     // return del(['dist/*', '!img/'])
@@ -97,6 +102,7 @@ function watcher() {
     watch('./src/js/**/*.js', scripts)
     watch('./src/img/**/*', images)
     watch('./src/fonts/**/*', fonts)
+    watch('./src/libs/**/*', libs)
 }
 
 async function replaceByBuild() {
@@ -109,12 +115,13 @@ exports.scss = scss
 exports.scripts = scripts
 exports.images = images
 exports.fonts = fonts
+exports.libs = libs
 exports.clean = clean
 exports.replaceByBuild = replaceByBuild
 
 exports.watcher = watcher
-exports.dev = series(clean, parallel(html, scss, scripts, images, fonts), watcher)
-exports.build = series(clean, replaceByBuild, parallel(html, scss, scripts, images, fonts))
+exports.dev = series(clean, parallel(html, scss, scripts, images, fonts, libs), watcher)
+exports.build = series(clean, replaceByBuild, parallel(html, scss, scripts, images, fonts, libs))
 
 
 

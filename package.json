@@ -1,6 +1,6 @@
 {
   "name": "my-gulp-template",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Стартовый шаблон для вёрстки проектов",
   "main": "index.js",
   "scripts": {
